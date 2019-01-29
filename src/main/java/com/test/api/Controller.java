@@ -44,7 +44,7 @@ public class Controller {
     	Business business = () -> {
     		//functional Interface --> definition
     		DataService dataService = () -> {
-    			return "Success, Testing Auto Deploy using Web hook!!!";
+    			return "Testing Auto Deploy using Web hook!!!";
     		};
     		
     		return dataService.data();

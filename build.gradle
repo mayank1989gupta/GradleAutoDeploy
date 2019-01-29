@@ -1,9 +1,12 @@
 buildscript {
     repositories {
-        mavenCentral()
+        maven {
+      		url "https://plugins.gradle.org/m2/"
+    	}
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
     }
 }
 
@@ -12,6 +15,7 @@ apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
+apply plugin: 'com.adarshr.test-logger'
 
 bootJar {
     baseName = 'gs-rest-service'
@@ -24,6 +28,41 @@ repositories {
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
+
+testlogger {
+    // pick a theme - mocha, standard, plain, mocha-parallel, standard-parallel or plain-parallel
+    theme 'standard'
+
+    // set to false to disable detailed failure logs
+    showExceptions true
+
+    // set threshold in milliseconds to highlight slow tests
+    slowThreshold 2000
+
+    // displays a breakdown of passes, failures and skips along with total duration
+    showSummary true
+
+    // set to false to hide passed tests
+    showPassed true
+
+    // set to false to hide skipped tests
+    showSkipped true
+
+    // set to false to hide failed tests
+    showFailed true
+
+    // enable to see standard out and error streams inline with the test results
+    showStandardStreams false
+
+    // set to false to hide passed standard out and error streams
+    showPassedStandardStreams true
+
+    // set to false to hide skipped standard out and error streams
+    showSkippedStandardStreams true
+
+    // set to false to hide failed standard out and error streams
+    showFailedStandardStreams true
+}
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")

@@ -8,6 +8,7 @@ import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +28,9 @@ public class Controller {
     
     private static final Logger LOGGER = LogManager.getLogger(Controller.class);
 
+    @Autowired
+    Business business;
+    
     /**
      * Rest Service for testing boot app.</br>
      * 
@@ -54,6 +58,15 @@ public class Controller {
     	};
     	
         return supplier.get();//return the greeting object.
+    }
+    
+    
+    @GetMapping("/greetingTest")
+    public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
+    	LOGGER.debug("this is service greeting for name: " + name);
+    	LOGGER.debug("Test completed");
+    	
+        return business.tester();//return the greeting object.
     }
     
     @GetMapping("/hello")

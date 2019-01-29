@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
+@Deprecated
 public class DataServiceImpl  {
 	
 	

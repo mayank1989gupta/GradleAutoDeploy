@@ -4,13 +4,10 @@
 package com.test.api;
 
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Producer;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -44,7 +41,7 @@ public class Controller {
     	Business business = () -> {
     		//functional Interface --> definition
     		DataService dataService = () -> {
-    			return "Testing Auto Deploy using Web hook!!";
+    			return "Testing Auto Deploy using Github Web-Hook!!";
     		};
     		
     		return dataService.data();

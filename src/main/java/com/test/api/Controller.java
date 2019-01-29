@@ -44,7 +44,7 @@ public class Controller {
     	Business business = () -> {
     		//functional Interface --> definition
     		DataService dataService = () -> {
-    			return "Success, Testing the layers!!";
+    			return "Success, Java 8[Functional Interfaces &, Supplier!!!";
     		};
     		
     		return dataService.data();

@@ -22,7 +22,7 @@ import com.test.api.data.DataService;
 @RestController
 public class Controller {
 
-	private static final String template = "Hello, %s!";
+	private static final String TEMPLATE = "Hello, %s!";
     private final AtomicLong counter = new AtomicLong();
     
     private static final Logger LOGGER = LogManager.getLogger(Controller.class);
@@ -50,10 +50,20 @@ public class Controller {
     	//Use of supplier to build the Greeting object
     	Supplier<Greeting> supplier = () -> {
     		return new Greeting(counter.incrementAndGet(),
-                    String.format(template, name + ", " + business.tester()));
+                    String.format(TEMPLATE, name + ", " + business.tester()));
     	};
     	
         return supplier.get();//return the greeting object.
+    }
+    
+    @GetMapping("/hello")
+    public String hello(@RequestParam(value="name", defaultValue="ABCXYZ") String name) {
+    	Supplier<String> supplier = () -> {
+    		return (counter.incrementAndGet() + ", " +
+                    String.format(TEMPLATE, name) + "!!!");
+    	};
+    	
+    	return supplier.get();//return
     }
 }
 //End of file

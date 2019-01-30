@@ -19,6 +19,12 @@ public class BusinessImpl implements Business {
 	@Autowired
 	DataService dataService;
 	
+	
+	public BusinessImpl(DataService dataService) {
+        super();
+        this.dataService = dataService;
+    }
+	
 	@Override
 	public String tester() {
 		String result = dataService.data();

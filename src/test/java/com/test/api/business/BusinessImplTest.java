@@ -4,15 +4,15 @@
 package com.test.api.business;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
 
-import com.test.api.AbstractTest;
 import com.test.api.data.DataService;
+import com.test.root.AbstractTest;
 
 /**
  * @author MGupta
@@ -20,20 +20,12 @@ import com.test.api.data.DataService;
  */
 public class BusinessImplTest extends AbstractTest {
 
-	@Override
-	@Before public void setUp() { super.setUp();
-	MockitoAnnotations.initMocks(BusinessImplTest.class); }
-
-
 	@Mock
-	DataService dataService;
-
-	@Mock
-	Business business;
+	private Business business;
 
 
 	@Test
-	public void testerTest() throws Exception {
+	public void testTester() throws Exception {
 		when(business.tester()).thenReturn("Success");
 		String result = business.tester();
 		assertEquals("Success", result);

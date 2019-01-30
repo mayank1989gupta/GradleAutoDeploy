@@ -33,6 +33,6 @@ public class DataServiceImplTest extends AbstractTest {
 		when(dataService.data()).thenReturn("Success");
 
 		String result = dataService.data();
-		assertEquals("Success", result);
+		assertEquals("Success", result);//Testing
 	}
 }

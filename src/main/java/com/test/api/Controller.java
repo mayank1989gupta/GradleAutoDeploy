@@ -4,6 +4,7 @@
 package com.test.api;
 
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
@@ -57,10 +58,12 @@ public class Controller {
                     String.format(TEMPLATE, name + ", " + business.tester()));
     	};
     	
+    	consumer.accept(supplier.get());//Updating content via consumer object
+    	
         return supplier.get();//return the greeting object.
     }
-    
-    
+
+	//Test Service
     @GetMapping("/greetingTest")
     public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
     	LOGGER.debug("this is service greeting for name: " + name);
@@ -69,6 +72,7 @@ public class Controller {
         return business.tester();//return the greeting object.
     }
     
+    //Test Service
     @GetMapping("/hello")
     public String hello(@RequestParam(value="name", defaultValue="ABCXYZ") String name) {
     	Supplier<String> supplier = () -> {

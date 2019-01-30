@@ -4,7 +4,6 @@
 package com.test.api;
 
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.apache.logging.log4j.LogManager;
@@ -57,8 +56,6 @@ public class Controller {
     		return new Greeting(counter.incrementAndGet(),
                     String.format(TEMPLATE, name + ", " + business.tester()));
     	};
-    	
-    	consumer.accept(supplier.get());//Updating content via consumer object
     	
         return supplier.get();//return the greeting object.
     }

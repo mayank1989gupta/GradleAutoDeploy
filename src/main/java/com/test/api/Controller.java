@@ -3,6 +3,7 @@
  */
 package com.test.api;
 
+import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
 
@@ -45,16 +46,18 @@ public class Controller {
     	Business business = () -> {
     		//functional Interface --> definition
     		DataService dataService = () -> {
-    			return "Testing Auto Deploy using Github Web-Hook!!";
+    			return "Testing Auto Deploy - Github Web-Hook!!";
     		};
     		
-    		return dataService.data();
+    		return dataService.data();//Return the response
     	};
     	
     	//Use of supplier to build the Greeting object
     	Supplier<Greeting> supplier = () -> {
     		return new Greeting(counter.incrementAndGet(),
-                    String.format(TEMPLATE, name + ", " + business.tester()));
+                    String.format(TEMPLATE, new StringJoiner(",")
+                    		.add(name)
+                    		.add(business.tester())));
     	};
     	
         return supplier.get();//return the greeting object.

@@ -71,16 +71,5 @@ public class Controller {
     	
         return business.tester();//return the greeting object.
     }
-    
-    //Test Service
-    @GetMapping("/hello")
-    public String hello(@RequestParam(value="name", defaultValue="ABCXYZ") String name) {
-    	Supplier<String> supplier = () -> {
-    		return (counter.incrementAndGet() + ", " +
-                    String.format(TEMPLATE, name) + "!!!");
-    	};
-    	
-    	return supplier.get();//return
-    }
 }
 //End of file

@@ -69,7 +69,7 @@ public class Controller {
     	LOGGER.debug("this is service greeting for name: " + name);
     	LOGGER.debug("Test completed");
     	
-        return business.tester();//return the greeting object.
+        return business.tester() + "Image deployed on docker!";//return the greeting object.
     }
 }
 //End of file

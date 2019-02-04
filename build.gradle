@@ -7,7 +7,6 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
         classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
-        //classpath('se.transmode.gradle:gradle-docker:1.2')
         classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
     }
 }
@@ -20,7 +19,6 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.adarshr.test-logger'
-//apply plugin: 'docker'
 apply plugin: 'com.palantir.docker'
 bootJar {
     baseName = 'gs-rest-service'

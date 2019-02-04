@@ -7,8 +7,12 @@ buildscript {
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
         classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
+        //classpath('se.transmode.gradle:gradle-docker:1.2')
+        classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
     }
 }
+
+group = 'springio'
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -16,7 +20,8 @@ apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.adarshr.test-logger'
-
+//apply plugin: 'docker'
+apply plugin: 'com.palantir.docker'
 bootJar {
     baseName = 'gs-rest-service'
     version =  '0.1.0'
@@ -62,6 +67,18 @@ testlogger {
 
     // set to false to hide failed standard out and error streams
     showFailedStandardStreams true
+}
+
+task unpack(type: Copy) {
+    dependsOn bootJar
+    from(zipTree(tasks.bootJar.outputs.files.singleFile))
+    into("build/dependency")
+}
+
+docker {
+    name "${project.group}/${bootJar.baseName}"
+    copySpec.from(tasks.unpack.outputs).into("dependency")
+    buildArgs(['DEPENDENCY': "dependency"])
 }
 
 dependencies {

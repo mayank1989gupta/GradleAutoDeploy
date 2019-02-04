@@ -45,11 +45,15 @@ public class Controller {
     	//Lambda --> for functional interface
     	Business business = () -> {
     		//functional Interface --> definition
-    		DataService dataService = () -> {
-    			return "Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
+    		Supplier<String> data = () -> {
+    			DataService dataService = () -> {
+        			return "Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
+        		};
+        		
+        		return dataService.data();//Return the response
     		};
     		
-    		return dataService.data();//Return the response
+    		return data.get();//from supplier	
     	};
     	
     	//Use of supplier to build the Greeting object

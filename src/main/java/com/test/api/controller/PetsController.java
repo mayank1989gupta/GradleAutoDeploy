@@ -42,10 +42,8 @@ public class PetsController {
 	@GetMapping("/")
 	public List<Pets> getAllPets() {
 		//call to Repo
-		Supplier<List<Pets>> pets = () -> {
-			return petsRepo.findAll();
-		};
-		
+		Supplier<List<Pets>> pets = () -> petsRepo.findAll();
+
 		return pets.get();//response
 	}
 
@@ -57,12 +55,10 @@ public class PetsController {
 	 */
 	@GetMapping("/{id}")
 	public Pets getPetById(@PathVariable("id") ObjectId id) {
-		Supplier<Pets> pet = () -> {
-			return petsRepo.findBy_id(id);
-		};
+		Supplier<Pets> pet = () -> petsRepo.findBy_id(id);
 		return pet.get();//response
 	}
-	
+
 	/**
 	 * API to update the record.</br>
 	 * 
@@ -72,15 +68,12 @@ public class PetsController {
 	@PutMapping("/{id}")
 	public void modifyPetById(@PathVariable("id") ObjectId id, 
 			@Valid @RequestBody Pets pets) {
-	 
-	  //invoking call to save pets object
-	  Consumer<Pets> pet = (arg) -> {
-		  pets.set_id(id);
-		  petsRepo.save(pets);
-	  };
-	  pet.accept(pets);//consumer func
+		pets.set_id(id);
+		//invoking call to save pets object
+		Consumer<Pets> pet = (arg) -> petsRepo.save(pets);
+		pet.accept(pets);//consumer func
 	}
-	
+
 	/**
 	 * API to create new record in the collection.</br>
 	 * 
@@ -89,8 +82,8 @@ public class PetsController {
 	 */
 	@PostMapping("/")
 	public Pets createPet(@Valid @RequestBody Pets pets) {
-	  pets.set_id(ObjectId.get());
-	  petsRepo.save(pets);
-	  return pets;
+		pets.set_id(ObjectId.get());
+		petsRepo.save(pets);
+		return pets;
 	}
 }

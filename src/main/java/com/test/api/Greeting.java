@@ -9,8 +9,8 @@ package com.test.api;
  */
 public class Greeting {
 
-    private long id;
-    private String content;
+    private long id;//ID
+    private String content;//content
 	
 	/**
 	 * @param id

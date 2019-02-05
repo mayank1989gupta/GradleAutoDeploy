@@ -16,7 +16,7 @@ public class HealthCheck implements HealthIndicator {
 
 	@Override
 	public Health health() {
-		int errorCode = check(); // TODO
+		int errorCode = check();//This needs to be defined.
 		if (errorCode != 0) {
 			return Health.down()
 					.withDetail("Error Code", errorCode).build();

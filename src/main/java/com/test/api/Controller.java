@@ -25,55 +25,53 @@ import com.test.api.data.DataService;
 public class Controller {
 
 	private static final String TEMPLATE = "Hello, %s!";
-    private final AtomicLong counter = new AtomicLong();
-    
-    private static final Logger LOGGER = LogManager.getLogger(Controller.class);
+	private final AtomicLong counter = new AtomicLong();
 
-    @Autowired
-    Business business;
-    
-    /**
-     * Rest Service for testing boot app.</br>
-     * 
-     * @param name
-     * @return
-     */
-    @GetMapping("/greeting")
-    public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-    	LOGGER.debug("this is service greeting for name: " + name);
-    	LOGGER.debug("Test completed");
-    	//Lambda --> for functional interface
-    	Business business = () -> {
-    		//functional Interface --> definition
-    		Supplier<String> data = () -> {
-    			DataService dataService = () -> {
-        			return "Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
-        		};
-        		
-        		return dataService.data();//Return the response
-    		};
-    		
-    		return data.get();//from supplier	
-    	};
-    	
-    	//Use of supplier to build the Greeting object
-    	Supplier<Greeting> supplier = () -> {
-    		return new Greeting(counter.incrementAndGet(),
-                    String.format(TEMPLATE, new StringJoiner(",")
-                    		.add(name)
-                    		.add(business.tester())));
-    	};
-    	
-        return supplier.get();//return the greeting object.
-    }
+	private static final Logger LOGGER = LogManager.getLogger(Controller.class);
+
+	@Autowired
+	Business business;
+
+	/**
+	 * Rest Service for testing boot app.</br>
+	 * 
+	 * @param name
+	 * @return
+	 */
+	@GetMapping("/greeting")
+	public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
+		LOGGER.debug("this is service greeting for name: " + name);
+		LOGGER.debug("Test completed");
+		//Lambda --> for functional interface
+		Business business = () -> {
+			//functional Interface --> definition
+			Supplier<String> data = () -> {
+				DataService dataService = () -> 
+				"Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
+
+				return dataService.data();//Return the response
+			};
+
+			return data.get();//from supplier	
+		};
+
+		//Use of supplier to build the Greeting object
+		Supplier<Greeting> supplier = () -> 
+		new Greeting(counter.incrementAndGet(),
+				String.format(TEMPLATE, new StringJoiner(",")
+						.add(name)
+						.add(business.fetch())));
+
+		return supplier.get();//return the greeting object.
+	}
 
 	//Test Service
-    @GetMapping("/greetingTest")
-    public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
-    	LOGGER.debug("this is service greeting for name: " + name);
-    	LOGGER.debug("Test completed");
-    	
-        return business.tester() + ", Image deployed on docker!";//return the greeting object.
-    }
+	@GetMapping("/greetingTest")
+	public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
+		LOGGER.debug("this is service greeting for name: " + name);
+		LOGGER.debug("Test completed");
+
+		return business.fetch() + ", Image deployed on docker!";//return the greeting object.
+	}
 }
 //End of file

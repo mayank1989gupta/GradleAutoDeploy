@@ -13,12 +13,10 @@ import com.test.api.data.DataService;
  *
  */
 @Service
-@Deprecated
 public class BusinessImpl implements Business {
 
 	@Autowired
 	DataService dataService;
-	
 	
 	public BusinessImpl(DataService dataService) {
         super();
@@ -26,10 +24,8 @@ public class BusinessImpl implements Business {
     }
 	
 	@Override
-	public String tester() {
-		String result = dataService.data();
-		
-		return result;
+	public String fetch() {
+		return dataService.data();
 	}
 
 }

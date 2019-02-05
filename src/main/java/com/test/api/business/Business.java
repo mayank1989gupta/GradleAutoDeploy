@@ -9,6 +9,10 @@ package com.test.api.business;
  */
 @FunctionalInterface
 public interface Business {
-
-	String tester();
+	/**
+	 * API to fetch the data.</br>
+	 * 
+	 * @return
+	 */
+	String fetch();
 }

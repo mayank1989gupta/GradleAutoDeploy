@@ -13,11 +13,11 @@ import org.springframework.data.annotation.Id;
 
 public class Pets {
 	@Id
-	public ObjectId _id;
+	private ObjectId _id;
 
-	public String name;
-	public String species;
-	public String breed;
+	private String name;
+	private String species;
+	private String breed;
 	/**
 	 * @param _id
 	 * @param name

@@ -10,15 +10,10 @@ import org.springframework.stereotype.Service;
  *
  */
 @Service
-@Deprecated
 public class DataServiceImpl  implements DataService {
 
 	@Override
 	public String data() {
-		// TODO Auto-generated method stub
 		return "Success";
 	}
-	
-	
-
 }

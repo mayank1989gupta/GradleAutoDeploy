@@ -23,10 +23,8 @@ public class TestController {
 	//Test Service
     @GetMapping("/hello")
     public String hello(@RequestParam(value="name", defaultValue="ABCXYZ") String name) {
-    	Supplier<String> supplier = () -> {
-    		return (counter.incrementAndGet() + ", " +
+    	Supplier<String> supplier = () -> (counter.incrementAndGet() + ", " +
                     String.format(TEMPLATE, name) + "!!!");
-    	};
     	
     	return supplier.get();//return
     }

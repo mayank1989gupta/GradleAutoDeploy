@@ -11,6 +11,16 @@ buildscript {
     }
 }
 
+plugins {
+  id "org.sonarqube" version "2.6.2"
+}
+
+sonarqube {
+    properties {
+        property 'sonar.projectName', 'Example of SonarQube Scanner for Gradle Usage'
+    }
+}
+
 group = 'springio'
 
 apply plugin: 'java'
@@ -20,6 +30,7 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'com.adarshr.test-logger'
 apply plugin: 'com.palantir.docker'
+
 bootJar {
     baseName = 'gs-rest-service'
     version =  '0.1.0'

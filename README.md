@@ -44,6 +44,10 @@
 	
 	#with the above steps the mongo is hosted as docker container
 
+#To stop and remove the existing running container
+	docker stop gradle_docker_app
+	docker container rm gradle_docker_app
+
 # To build 
 	gradle build docker
 

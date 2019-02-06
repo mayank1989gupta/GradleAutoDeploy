@@ -8,16 +8,18 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
         classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
         classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
+        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
     }
 }
 
 plugins {
-  id "org.sonarqube" version "2.6.2"
+  id "org.sonarqube" version "2.7"
 }
 
 sonarqube {
     properties {
         property 'sonar.projectName', 'Gradle Docker - Sonar'
+        property "sonar.projectKey", "gradleSonar"  
     }
 }
 

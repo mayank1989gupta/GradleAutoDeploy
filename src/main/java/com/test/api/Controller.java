@@ -43,11 +43,10 @@ public class Controller {
 		LOGGER.debug("this is service greeting for name: " + name);
 		LOGGER.debug("Test completed");
 		//Lambda --> for functional interface
-		Business business = () -> {
+		Business businessData = () -> {
 			//functional Interface --> definition
 			Supplier<String> data = () -> {
-				DataService dataService = () -> 
-				"Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
+				DataService dataService = () -> "Testing Auto Deploy - Github Web-Hook & Docker Container Testing!!!";
 
 				return dataService.data();//Return the response
 			};
@@ -60,7 +59,7 @@ public class Controller {
 		new Greeting(counter.incrementAndGet(),
 				String.format(TEMPLATE, new StringJoiner(",")
 						.add(name)
-						.add(business.fetch())));
+						.add(businessData.fetch())));
 
 		return supplier.get();//return the greeting object.
 	}

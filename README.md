@@ -48,7 +48,7 @@
 	gradle build docker
 
 #To create and run the docker image
-	docker run --name gradle_docker_app --network=gradle_docker_net -p 9000:9000 -p 9001:9001 -t springio/gs-rest-service	
+	docker run --name gradle_docker_app --network=gradle_docker_net -p 8000:8000 -p 8001:8001 -t springio/gs-rest-service	
 
 	Where: 
 	gradle_docker_app --> container name of the app

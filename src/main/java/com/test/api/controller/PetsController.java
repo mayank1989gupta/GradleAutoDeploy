@@ -70,7 +70,7 @@ public class PetsController {
 			@Valid @RequestBody Pets pets) {
 		pets.set_id(id);
 		//invoking call to save pets object
-		Consumer<Pets> pet = (arg) -> petsRepo.save(pets);
+		Consumer<Pets> pet = arg -> petsRepo.save(pets);
 		pet.accept(pets);//consumer func
 	}
 

@@ -5,12 +5,15 @@ package com.test.api;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.test.api.mongo.model.Pets;
 import com.test.root.AbstractTest;
 
 /**
@@ -53,5 +56,35 @@ public class ControllerTest extends AbstractTest {
 
 		int status = mvcResult.getResponse().getStatus();
 		assertEquals(200, status);
+	}
+	
+	@Test
+	public void getAllPetsTest() throws Exception {
+		String uri = "/pets/";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(200, status);
+	}
+	
+	@Test
+	public void modifyPetByIdTest() throws Exception {
+		String uri = "/pets/142536";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.put(uri)
+				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(400, status);//To Correct
+	}
+	
+	@Test
+	public void getPetByIdTest() throws Exception {
+		String uri = "/pets/65252671";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(400, status);//To correct
 	}
 }

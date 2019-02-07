@@ -29,8 +29,8 @@
 #To connect Spring Boot &, MongoDB
 	As the Mongo DB is locally hosted and the app is hosted on docker container so it will not be access the localhost on the computer.
 	To connect MongoDB and App, follow the steps:
-		#Create a network: 
-		docker network create gradle_docker_net --> [spring_demo_net - Network Name]
+	#Create a network: 
+	docker network create gradle_docker_net --> [spring_demo_net - Network Name]
 	
 	#Goto the mongo data directory. For eg:
 	C:\data\db
@@ -58,3 +58,15 @@
 	gradle_docker_app --> container name of the app
 	gradle_docker_net --> Network name
 	springio/gs-rest-service --> image name
+
+#Integrating Sonar
+	Entries added in build.gradle: 
+	plugins {
+	  id "org.sonarqube" version "2.6.2"
+	}
+	
+	sonarqube {
+	    properties {
+	        property 'sonar.projectName', 'Gradle Docker - Sonar'
+	    }
+	}

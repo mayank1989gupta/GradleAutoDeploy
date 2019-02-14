@@ -70,3 +70,21 @@
 	        property 'sonar.projectName', 'Gradle Docker - Sonar'
 	    }
 	}
+	
+#Adding Swagger UI with SpringFox
+	One of the most popular API documentation specifications is OpenApi, formerly known as Swagger.
+	SpringFox is a swagger integration of Springs:
+	"It can automatically inspect your classes, detect Controllers, their methods, model classes they 
+	use and URLs to which they are mapped. Without any handwritten documentation, it can generate a lot 
+	of information about your API just by inspecting classes in your application. "
+	
+	Added new config class: SpringFoxConfig.java --> acts as the config class for Swagger and 
+	SpringFox.
+	Uses the @EnableSwagger2 annotation &, definition of what to document.
+	
+	Dependencies added: 
+	compile "io.springfox:springfox-swagger2:2.9.2"
+	compile "io.springfox:springfox-swagger-ui:2.9.2"
+    
+    Swagger UI URL: http://<IP>:<Port>/swagger-ui.html
+    Eg: http://localhost:8000/swagger-ui.html

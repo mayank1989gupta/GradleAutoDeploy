@@ -5,10 +5,10 @@ buildscript {
     	}
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.8.RELEASE")
-        classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
+        classpath('org.springframework.boot:spring-boot-gradle-plugin:2.0.8.RELEASE')
+        classpath('com.adarshr:gradle-test-logger-plugin:1.6.0')
         classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
-        classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
+        classpath('org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7')
     }
 }
 
@@ -96,8 +96,14 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-logging")
+    //Mongo
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
     compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: '2.0.1.RELEASE'
+    
+    //Swagger dependencies
+    compile "io.springfox:springfox-swagger2:2.9.2"
+    compile "io.springfox:springfox-swagger-ui:2.9.2"
+    
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("junit:junit")
 }

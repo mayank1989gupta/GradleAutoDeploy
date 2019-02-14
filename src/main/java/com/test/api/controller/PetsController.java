@@ -30,7 +30,7 @@ import com.test.api.mongo.model.repositories.PetsRepository;
 @RestController
 @RequestMapping("/pets")
 public class PetsController {
-
+	
 	@Autowired
 	private PetsRepository petsRepo;
 

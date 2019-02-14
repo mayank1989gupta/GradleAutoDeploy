@@ -5,7 +5,7 @@ buildscript {
     	}
     }
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.5.RELEASE")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.8.RELEASE")
         classpath "com.adarshr:gradle-test-logger-plugin:1.6.0"
         classpath('gradle.plugin.com.palantir.gradle.docker:gradle-docker:0.13.0')
         classpath "org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:2.7"
@@ -97,6 +97,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     compile("org.springframework.boot:spring-boot-starter-logging")
     compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-sleuth', version: '2.0.1.RELEASE'
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile("junit:junit")
 }

@@ -5,7 +5,7 @@ services:
     build: .
     # image: registry.gitlab.com/idgst/springboot-mongo-demo:latest
     restart: always
-    container_name: gradle_docker_sample
+    container_name: gradle_docker_app
     ports:
       - 9000:9000
       - 9001:9001
@@ -15,7 +15,8 @@ services:
   
   mongo:
     image: mongo
-    container_name: gradle_docker_sample
+    container_name: gradle_docker-mongo
+    url: mongodb://gradle_docker-mongo/rest_tutorial
 #    ports:  # for demo/debug purpose only
 #      - 27017:27017
     volumes:

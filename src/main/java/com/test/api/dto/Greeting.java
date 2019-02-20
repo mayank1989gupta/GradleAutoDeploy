@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.test.api;
+package com.test.api.dto;
 
 /**
  * @author MGupta

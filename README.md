@@ -52,8 +52,8 @@
 	gradle build docker
 
 #To create and run the docker image
+	
 	docker run --name gradle_docker_app --network=gradle_docker_net -p 8000:8000 -p 8001:8001 -t springio/gs-rest-service	
-
 	Where: 
 	gradle_docker_app --> container name of the app
 	gradle_docker_net --> Network name
@@ -85,6 +85,6 @@
 	Dependencies added: 
 	compile "io.springfox:springfox-swagger2:2.9.2"
 	compile "io.springfox:springfox-swagger-ui:2.9.2"
-    
-    Swagger UI URL: http://<IP>:<Port>/swagger-ui.html
-    Eg: http://localhost:8000/swagger-ui.html
+	
+	Swagger UI URL: http://<IP>:<Port>/swagger-ui.html
+	Eg: http://localhost:8000/swagger-ui.html

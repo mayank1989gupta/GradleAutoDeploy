@@ -3,12 +3,15 @@
  */
 package com.test.api;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 /**
  * @author MGupta
@@ -17,8 +20,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class Application implements ApplicationRunner {
 
-	private static final Logger LOGGER = LogManager.getLogger(Application.class);
-	
+	private static final Logger LOGGER = Logger.getLogger(Application.class.getName()); 
+
 	/**
 	 * @param args
 	 */
@@ -26,14 +29,17 @@ public class Application implements ApplicationRunner {
 		SpringApplication.run(Application.class, args);
 
 	}
-	
+
+	@Bean public RestTemplate getRestTemplate() { 
+		return new RestTemplate(); 
+	} 
+
 	@Override
-    public void run(ApplicationArguments applicationArguments) throws Exception {
-        LOGGER.debug("Debugging log");
-        LOGGER.info("Info log");
-        LOGGER.warn("Hey, This is a warning!");
-        LOGGER.error("Oops! We have an Error. OK");
-        LOGGER.fatal("Damn! Fatal error. Please fix me.");
-    }
+	public void run(ApplicationArguments applicationArguments) throws Exception {
+		LOGGER.log(Level.FINE, () -> "Debugging log");
+		LOGGER.info("Info log");
+		LOGGER.log(Level.WARNING, () -> "Hey, This is a warning!");
+		LOGGER.log(Level.SEVERE, "Oops! We have an Error. OK");
+	}
 
 }

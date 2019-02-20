@@ -3,6 +3,8 @@
  */
 package com.test.api.mongo.model;
 
+import javax.validation.constraints.NotNull;
+
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
@@ -15,8 +17,13 @@ public class Pets {
 	@Id
 	private ObjectId _id;
 
+	@NotNull
 	private String name;
+	
+	@NotNull
 	private String species;
+	
+	@NotNull
 	private String breed;
 	/**
 	 * @param _id

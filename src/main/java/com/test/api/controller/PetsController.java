@@ -6,6 +6,8 @@ package com.test.api.controller;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.validation.Valid;
 
@@ -30,7 +32,9 @@ import com.test.api.mongo.model.repositories.PetsRepository;
 @RestController
 @RequestMapping("/pets")
 public class PetsController {
-	
+
+	private static final Logger LOGGER = Logger.getLogger(PetsController.class.getName());
+
 	@Autowired
 	private PetsRepository petsRepo;
 
@@ -41,10 +45,17 @@ public class PetsController {
 	 */
 	@GetMapping("/")
 	public List<Pets> getAllPets() {
-		//call to Repo
-		Supplier<List<Pets>> pets = () -> petsRepo.findAll();
-
-		return pets.get();//response
+		LOGGER.info(() -> "Testing logging!!");
+		List<Pets> result = null;
+		try {
+			//call to Repo
+			Supplier<List<Pets>> pets = () -> petsRepo.findAll();
+			LOGGER.info(() -> "test method getAll()" + pets.get() + "::: Data");
+			result = pets.get();
+		} catch (Exception exception) {
+			LOGGER.log(Level.SEVERE, exception.getLocalizedMessage(), exception);
+		}
+		return result;//response
 	}
 
 	/**

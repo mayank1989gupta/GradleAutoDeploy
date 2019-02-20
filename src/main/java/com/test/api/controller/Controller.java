@@ -1,21 +1,22 @@
 /**
  * 
  */
-package com.test.api;
+package com.test.api.controller;
 
 import java.util.StringJoiner;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Supplier;
+import java.util.logging.Logger;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import com.test.api.business.Business;
 import com.test.api.data.DataService;
+import com.test.api.dto.Greeting;
 
 /**
  * @author MGupta
@@ -27,7 +28,7 @@ public class Controller {
 	private static final String TEMPLATE = "Hello, %s!";
 	private final AtomicLong counter = new AtomicLong();
 
-	private static final Logger LOGGER = LogManager.getLogger(Controller.class);
+	private static final Logger LOGGER = Logger.getLogger(Controller.class.getName());
 
 	@Autowired
 	Business business;
@@ -39,9 +40,9 @@ public class Controller {
 	 * @return
 	 */
 	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value="name", defaultValue="World") String name) {
-		LOGGER.debug("this is service greeting for name: " + name);
-		LOGGER.debug("Test completed");
+	public Greeting greeting(@RequestParam(value="name", defaultValue="ABC XYZ") String name) {
+		LOGGER.info("this is service greeting for name: " + name);
+		LOGGER.info("Test completed");
 		//Lambda --> for functional interface
 		Business businessData = () -> {
 			//functional Interface --> definition
@@ -67,10 +68,10 @@ public class Controller {
 	//Test Service
 	@GetMapping("/greetingTest")
 	public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
-		LOGGER.debug("this is service greeting for name: " + name);
-		LOGGER.debug("Test completed");
+		LOGGER.info(() -> "this is service greeting for name: " + name);
+		LOGGER.info("Test completed");
 
 		return business.fetch() + ", Image deployed on docker!";//return the greeting object.
-	}
+	}	
 }
 //End of file

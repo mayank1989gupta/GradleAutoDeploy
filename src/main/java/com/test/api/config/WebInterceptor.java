@@ -31,10 +31,10 @@ public class WebInterceptor {
 		RestTemplate template = new RestTemplate();
 		
 		Supplier<List<ClientHttpRequestInterceptor>> interceptors = () -> {
-			List<ClientHttpRequestInterceptor> interceptor = new ArrayList<>();
+			List<ClientHttpRequestInterceptor> interceptor = new ArrayList<>();//Empty List
 			interceptor.add(new APILoggingInterceptor());//Adding the interceptor
 			
-			return interceptor;
+			return interceptor;//result
 		};
 		
 		template.setInterceptors(interceptors.get());//setting the interceptors to rest template

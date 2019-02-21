@@ -13,7 +13,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.test.api.business.Business;
 import com.test.api.data.DataService;
@@ -74,8 +73,6 @@ public class Controller {
 	@GetMapping("/greetingTest")
 	public String greetingTest(@RequestParam(value="name", defaultValue="World") String name) {
 		LOGGER.info(() -> "this is service greeting for name: " + name);
-		LOGGER.info("Test completed");
-
 		return business.fetch() + ", Image deployed on docker!";//return the greeting object.
 	}	
 }

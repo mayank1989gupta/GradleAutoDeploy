@@ -94,7 +94,11 @@ public class PetsController {
 	@PostMapping("/")
 	public Pets createPet(@Valid @RequestBody Pets pets) {
 		pets.set_id(ObjectId.get());
-		petsRepo.save(pets);
+		Consumer<Pets> consumer = (arg) -> {
+			petsRepo.save(arg);//saving the new object
+		};
+		
+		consumer.accept(pets);//invoking call to save pets
 		return pets;
 	}
 }

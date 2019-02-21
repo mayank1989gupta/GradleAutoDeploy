@@ -88,3 +88,44 @@
 	
 	Swagger UI URL: http://<IP>:<Port>/swagger-ui.html
 	Eg: http://localhost:8000/swagger-ui.html
+
+#Adding Prometheus
+	Download and install prometheus
+	Windows: choco install prometheus
+	
+	Change the config yml file as per need. For eg:
+	
+	global config -->
+	scrape_interval:     5s 
+	evaluation_interval: 5s 
+	
+	scrape_configs -->
+	job_name: 'GradleAutoDeploy'
+    metrics_path: '/prometheus'
+    
+    static_configs
+    targets: ['localhost:8001']
+    
+    start prometheus:
+    Go the installation directory:
+    For eg: C:\ProgramData\chocolatey\lib\prometheus\tools\prometheus-2.2.1.windows-amd64
+    command: prometheus.exe --config.file=prometheus.yml
+    
+    Once the server is up, goto URL: http://localhost:9090
+    
+#Grafana
+	Download and install grafana
+	Windows: choco install grafana
+	
+	Goto the bin: C:\ProgramData\chocolatey\lib\grafana\tools\grafana-5.4.3\bin
+	start grafana-server.exe
+	grafana will start at port: 3000
+	URL: http://localhost:3000
+	
+	Goto Add data source --> select prometheus and give the necessary details
+	Click Save & Test --> DataSource is working !
+	
+	Create dashboard with relevant details:
+	add dashboard and edit and provide the details of data source type of panels you want to display
+    
+    

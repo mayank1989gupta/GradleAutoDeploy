@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -40,8 +41,12 @@ public class Controller {
 	 * @return
 	 */
 	@GetMapping("/greeting")
-	public Greeting greeting(@RequestParam(value="name", defaultValue="ABC XYZ") String name) {
-		LOGGER.info("this is service greeting for name: " + name);
+	public Greeting greeting(@RequestParam(value="name") String name) {
+		if(StringUtils.isEmpty(name)) {
+			throw new NullPointerException();
+		}
+		
+		LOGGER.info(() -> "this is service greeting for name: " + name);
 		LOGGER.info("Test completed");
 		//Lambda --> for functional interface
 		Business businessData = () -> {

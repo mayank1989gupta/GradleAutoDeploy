@@ -1,4 +1,8 @@
 /.gradle/
-/build/
+/build
 /java_pid20672.hprof
 /java_pid18968.hprof
+/.idea
+/settings
+/gradle
+/bin

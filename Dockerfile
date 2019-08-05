@@ -8,5 +8,4 @@ COPY ${DEPENDENCY}/BOOT-INF/classes /app
 EXPOSE 27017
 EXPOSE 8000
 EXPOSE 8001
-#spring-demo-mongo --> mongo container name, rest_tutorial --> DB name in mongo
 ENTRYPOINT ["java","-Dspring.data.mongodb.uri=mongodb://gradle_docker-mongo:27017/rest_tutorial","-cp","app:app/lib/*","com.test.api.Application"]

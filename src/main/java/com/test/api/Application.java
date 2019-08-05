@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 @SpringBootApplication
+
 public class Application implements ApplicationRunner {
 
 	private static final Logger LOGGER = Logger.getLogger(Application.class.getName()); 

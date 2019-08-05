@@ -1,25 +1,67 @@
 version: '3.1'
 
+networks:
+  gradle_docker_net:
+
 services:
   springboot:
-    build: .
-    # image: registry.gitlab.com/idgst/springboot-mongo-demo:latest
+    image: springio/gs-rest-service
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     container_name: gradle_docker_app
     ports:
-      - 9000:9000
-      - 9001:9001
-    working_dir: /opt/app
+      - 8000:8000
+      - 8001:8001
+    networks:
+      - gradle_docker_net
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
     depends_on:
       - mongo
-  
+
   mongo:
-    image: mongo
+    image: mongo:latest
     container_name: gradle_docker-mongo
-    url: mongodb://gradle_docker-mongo/rest_tutorial
-#    ports:  # for demo/debug purpose only
-#      - 27017:27017
+    #url: mongodb:/gradle_docker-mongo:27017/rest_tutorial
+    ports:  # for demo/debug purpose only
+      - 27017:27017
     volumes:
-      - $HOME/data/springboot-mongo-data:/data/db
-      - $HOME/data/springboot-mongo-bkp:/data/bkp
+      - mongo-storage:/var/lib/mongo
+      #- $HOME/data/springboot-mongo-bkp:/data/bkp
+    networks:
+      - gradle_docker_net
     restart: always
+
+  prometheus:
+    image: prom/prometheus
+    container_name: gradle_docker-prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - prometheus-storage:/var/lib/prometheus
+      - /Users/Mayank/Documents/workspace/Testing/GradleAutoDeploy/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    networks:
+      - gradle_docker_net
+    depends_on:
+      - springboot
+
+  grafana:
+    image: grafana/grafana
+    container_name: gradle_docker-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-storage:/opt/grafana/data
+    networks:
+      - gradle_docker_net
+    depends_on:
+      - prometheus
+
+volumes:
+  prometheus-storage: {}
+  grafana-storage: {}
+  mongo-storage: {}
